@@ -3,6 +3,7 @@ const companyName = document.getElementById("company-name");
 const parent = document.getElementById("parent");
 const container = document.getElementsByClassName('container')[0];
 const footer = document.getElementsByTagName('footer')[0];
+const lang = document.getElementById("lang");
 const errorTextH2 = document.createElement("h2");
 const errorTextP = document.createElement("p");
 const errorTextStyle = "color: #091e42; width: 280px; text-align: center; ";
@@ -18,14 +19,16 @@ window.onload = function() {
     if(x.length<=4)sd=x[x.length-1];
     else
         sd = x[x.length-2];
-    const instance1 = axios.default;
-    const instance = instance1.create({
+    // const instance1 = axios.default;
+    // const instance = instance1.create({
+    const instance = axios.create({
         method: 'get',
-        baseURL: `https://2mv.io/load-widgets?id=${sd}`
+        baseURL: `https://2mv.io/load-widgets?id=6dca773d`
     });
 
     instance().then(function(response) {
         var response = response.data;
+
         if(response.surveyName == "") {
             
         } else {
@@ -103,6 +106,42 @@ window.onload = function() {
         
         for(var i = 0; i < response.widgets.length; i++) {
             parent.innerHTML += widget(i);
+        }
+
+        /*** Language ***/
+        let str = response.settings.localeData;
+        let words = str.split(';');
+        for(let i = 0; i < words.length; i++) {
+            console.log(words[i])
+        }
+        let selectElem = `
+            <label class="select" for="slct">
+                <select id="slct" required="required" style="text-transform: uppercase;">
+                    <option value="#" selected="selected">RU</option>
+                    ${
+                        words.map((lang) => {
+                            return(
+                                `<option>${lang}</option>`
+                            )
+                        })
+                    }
+                </select>
+                <svg>
+                    <use xlink:href="#select-arrow-down"></use>
+                </svg>
+            </label>
+            <!-- SVG Sprites-->
+            <svg class="sprites">
+                <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                    <polyline points="1 1 5 5 9 1"></polyline>
+                </symbol>
+            </svg>
+        `;
+
+        if (response.settings.locale) {
+            lang.innerHTML = selectElem
+        } else {
+            return;
         }
         
     },function(err){

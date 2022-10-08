@@ -21,6 +21,9 @@ body {
     flex-grow: 1;
     margin: 0 auto;
     padding: 10px 10px 0;
+    #lang {
+      text-align: end;
+    }
     .img {
         position: relative;
         margin: 25px auto 5px;
@@ -29,7 +32,7 @@ body {
         height: auto;
         max-width: 220px;
         max-height: 78px;
-        &::before {
+        /* &::before {
             content: "";
             position: absolute;
             top: 0;
@@ -39,8 +42,9 @@ body {
             box-shadow: inset 0 0 11px #efefef;
             -moz-box-shadow: inset 0 0 8px rgba(0,0,0,.6);
             -webkit-box-shadow: inset 0 0 11px #efefef;
-        }
+        } */
     }
+    
     .company-logo {
         width: auto;
         height: auto;
@@ -248,4 +252,61 @@ footer {
             }
         }
     }
+}
+
+.select {
+    position: relative;
+    min-width: 20px;
+    margin-top: 15px;
+    svg {
+        position: absolute;
+        top: calc(50% - 3px);
+        right: 12px;
+        width: 10px;
+        height: 6px;
+        stroke-width: 2px;
+        stroke: #9098a9;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        pointer-events: none;
+    }
+    select {
+        margin-top: 10px;
+        -webkit-appearance: none;
+        padding: 7px 40px 7px 12px;
+        width: 40%;
+        cursor: pointer;
+        border: 1px solid #e8eaed;
+        border-radius: 5px;
+        background: #fff;
+        box-shadow: 0 1px 3px -2px #9098a9;
+        font-family: inherit;
+        font-size: 16px;
+        transition: all 150ms ease;
+        option {
+            color: #223254;
+        }
+        option[value=""][disabled] {
+            display: none;
+        }
+        &:focus {
+            outline: none;
+            border-color: #07f;
+            box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+        }
+        &:hover + svg {
+            stroke: #07f;
+        }
+    }
+    select:required:invalid {
+        color: #5a667f;
+    }
+}
+.sprites {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    user-select: none;
 }
