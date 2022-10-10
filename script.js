@@ -141,20 +141,11 @@ window.onload = function () {
         } else {
             return;
         }
-
-        var select = document.getElementById('language')
-        select.onchange = function () {
-            lod(select.options[select.selectedIndex].value);
-            select.options[select.selectedIndex].value == 0 ? companyName.innerHTML = response.surveyName : 
-            select.options[select.selectedIndex].value == 1 ? companyName.innerHTML = response.surveyName2 :
-            companyName.innerHTML = response.surveyName3;
-            //  window.location = '?locale=' + select.options[select.selectedIndex].value;
-        }
-
-    }, function (err) {
-        container.innerHTML = "";
-        container.append(errorTextH2);
-        container.append(errorTextP);
-        footer.remove();
+        
+    },function(err){
+            container.innerHTML = "";
+            container.append(errorTextH2);
+            container.append(errorTextP);
+            footer.remove();
     });
 };
