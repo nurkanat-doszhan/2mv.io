@@ -138,11 +138,11 @@ window.onload = function() {
             </svg>
         `;
 
-        if (response.settings.locale) {
-            lang.innerHTML = selectElem
-        } else {
-            return;
-        }
+//         if (response.settings.locale) {
+//             lang.innerHTML = selectElem
+//         } else {
+//             return;
+//         }
         
     },function(err){
             container.innerHTML = "";
