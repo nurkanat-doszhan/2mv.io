@@ -17,11 +17,14 @@ window.onload = function () {
     var url = document.location.href;
     var x = url.split('/');
     let sd = '';
-    if (x.length <= 4) sd = x[x.length - 1];
-    else
+    if (x.length <= 4) {
+        sd = x[x.length - 1];
+    }
+    else {
         sd = x[x.length - 2];
-      const instance1 = axios.default;
-      const instance = instance1.create({
+    }
+    const instance1 = axios.default;
+    const instance = instance1.create({
 //         const instance = axios.create({
         method: 'get',
         baseURL: `https://2mv.io/load-widgets?id=${sd}`
