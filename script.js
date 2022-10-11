@@ -25,9 +25,9 @@ window.onload = function () {
     }
     const instance1 = axios.default;
     const instance = instance1.create({
-//         const instance = axios.create({
+    // const instance = axios.create({
         method: 'get',
-        baseURL: `https://2mv.io/load-widgets?id=${sd}`
+        baseURL: `https://2mv.io/load-widgets?id=6dca773d`
     });
     instance().then(function (response) {
         var response = response.data;
@@ -53,10 +53,10 @@ window.onload = function () {
         let selectElem = `
             <label class="select" for="language">
                 <select id="language" required="required" style="text-transform: uppercase;">
-                    <option value="0" selected="selected">RU</option>
-                    ${words.map((lang, i) => {
+                    <option value="ru" selected="selected">RU</option>
+                    ${words.map((lang) => {
                         return (
-                            `<option value="${i + 1}">${lang}</option>`
+                            `<option value="${lang}">${lang}</option>`
                         )
                     })}
                 </select>
@@ -72,7 +72,7 @@ window.onload = function () {
             </svg>
         `;
 
-        if (response.settings.locale) {
+        if (response.settings.locale && str) {
             lang.innerHTML = selectElem
         }
         else {
@@ -82,7 +82,7 @@ window.onload = function () {
         let select = document.getElementById('language')
         var currentLang = 'ru';
 
-        lod('0');
+        lod('ru');
         function lod(value) {
             parent.innerHTML = '';
             for (var i = 0; i < response.widgets.length; i++) {
@@ -90,8 +90,8 @@ window.onload = function () {
             }
         }
         select.onchange = function () {
-            select.options[select.selectedIndex].value == 0 ? companyName.innerHTML = response.surveyName : 
-            select.options[select.selectedIndex].value == 1 ? companyName.innerHTML = response.surveyName2 :
+            select.options[select.selectedIndex].value == 'ru' ? companyName.innerHTML = response.surveyName : 
+            select.options[select.selectedIndex].value == 'kz' ? companyName.innerHTML = response.surveyName2 :
             companyName.innerHTML = response.surveyName3;
             //  window.location = '?locale=' + select.options[select.selectedIndex].value;
             currentLang = select.options[select.selectedIndex].text
@@ -155,7 +155,7 @@ window.onload = function () {
 
             return `
             <div class="card">
-                <h3>${value == '0' ? response.widgets[id].title : value == '1' ? response.widgets[id].title2 : response.widgets[id].title3}</h3>
+                <h3>${value == 'ru' ? response.widgets[id].title : value == 'kz' ? response.widgets[id].title2 : response.widgets[id].title3}</h3>
                 <img src="${response.widgets[id].picture}" alt="" draggable="false">
                 <a href="${path()}">Выбрать</a>
                 <p>${hint()}</p>
