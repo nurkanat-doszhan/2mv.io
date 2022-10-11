@@ -41,6 +41,62 @@ window.onload = function () {
             }
         }
 
+        
+
+        /*** Language ***/
+
+        let str = response.settings.localeData;
+        let words = str.split(';');
+        let selectElem = `
+            <label class="select" for="language">
+                <select id="language" required="required" style="text-transform: uppercase;">
+                    <option value="0" selected="selected">RU</option>
+                    ${words.map((lang, i) => {
+                        return (
+                            `<option value="${i + 1}">${lang}</option>`
+                        )
+                    })}
+                </select>
+                <svg>
+                    <use xlink:href="#select-arrow-down"></use>
+                </svg>
+            </label>
+            <!-- SVG Sprites-->
+            <svg class="sprites">
+                <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                    <polyline points="1 1 5 5 9 1"></polyline>
+                </symbol>
+            </svg>
+        `;
+
+        if (response.settings.locale) {
+            lang.innerHTML = selectElem
+        }
+        else {
+            
+        }
+        
+        let select = document.getElementById('language')
+        var currentLang = 'ru';
+
+        lod('0');
+        function lod(value) {
+            parent.innerHTML = '';
+            for (var i = 0; i < response.widgets.length; i++) {
+                parent.innerHTML += widget(i,value);
+            }
+        }
+        select.onchange = function () {
+            select.options[select.selectedIndex].value == 0 ? companyName.innerHTML = response.surveyName : 
+            select.options[select.selectedIndex].value == 1 ? companyName.innerHTML = response.surveyName2 :
+            companyName.innerHTML = response.surveyName3;
+            //  window.location = '?locale=' + select.options[select.selectedIndex].value;
+            currentLang = select.options[select.selectedIndex].text
+            lod(select.options[select.selectedIndex].value);
+        }
+
+        /*** Widgets ***/
+
         function widget(id,value) {
             if (x.length <= 4)
                 var id2 = x[x.length - 1] + "/0001";
@@ -68,9 +124,9 @@ window.onload = function () {
                 }
 
                 if (response.widgets[id].type == "one") {
-                    return 'https://mvoter.com/interview/' + id2 +'?locale=en' // языки добваить
+                    return 'https://mvoter.com/interview/' + id2 +`?locale=${currentLang}`
                 } else if (response.widgets[id].type == "two") {
-                    return id1+'/en'; // языки добваить
+                    return id1+`/${currentLang}`;
                 }
                 else {
                     let getNum = link.split('//').pop().replace(/[^a-z^0-9]/ig, '');
@@ -102,59 +158,10 @@ window.onload = function () {
                 <p>${hint()}</p>
             </div>`;
         }
-
-        lod('0');
-        function lod(value) {
-            parent.innerHTML = '';
-            for (var i = 0; i < response.widgets.length; i++) {
-                parent.innerHTML += widget(i,value);
-            }
-        }
-
-        /*** Language ***/
-        let str = response.settings.localeData;
-        let words = str.split(';');
-        let selectElem = `
-            <label class="select" for="language">
-                <select id="language" required="required" style="text-transform: uppercase;">
-                    <option value="0" selected="selected">RU</option>
-                    ${words.map((lang, i) => {
-                        return (
-                            `<option value="${i + 1}">${lang}</option>`
-                        )
-                    })}
-                </select>
-                <svg>
-                    <use xlink:href="#select-arrow-down"></use>
-                </svg>
-            </label>
-            <!-- SVG Sprites-->
-            <svg class="sprites">
-                <symbol id="select-arrow-down" viewbox="0 0 10 6">
-                    <polyline points="1 1 5 5 9 1"></polyline>
-                </symbol>
-            </svg>
-        `;
-
-        if (response.settings.locale) {
-            lang.innerHTML = selectElem
-        } else {
-            return;
-        }
-        
-        var select = document.getElementById('language')
-        select.onchange = function () {
-            lod(select.options[select.selectedIndex].value);
-            select.options[select.selectedIndex].value == 0 ? companyName.innerHTML = response.surveyName : 
-            select.options[select.selectedIndex].value == 1 ? companyName.innerHTML = response.surveyName2 :
-            companyName.innerHTML = response.surveyName3;
-            //  window.location = '?locale=' + select.options[select.selectedIndex].value;
-        }
-        
-    },function(err){
-            container.innerHTML = "";
-            container.append(errorTextH2);
-            container.append(errorTextP);
-            footer.remove();
+    }, function (err) {
+        container.innerHTML = "";
+        container.append(errorTextH2);
+        container.append(errorTextP);
+        footer.remove();
     });
 };
