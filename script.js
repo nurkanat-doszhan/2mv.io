@@ -27,7 +27,7 @@ window.onload = function () {
     const instance = instance1.create({
     // const instance = axios.create({
         method: 'get',
-        baseURL: `https://2mv.io/load-widgets?id=6dca773d`
+        baseURL: `https://2mv.io/load-widgets?id=${sd}`
     });
     instance().then(function (response) {
         var response = response.data;
