@@ -149,15 +149,49 @@ window.onload = function () {
             }
 
             function hint() {
-                if (response.widgets[id].hint) return response.widgets[id].hint;
-                else return "";
+                // if (response.widgets[id].hint) {
+                //     if (value == 'ru') {
+                //         return response.widgets[id].hint;
+                //     } else if (value == 'kz') {
+                //         return 'kz_hint'
+                //     } else {
+                //         return 'en_hint'
+                //     }
+                // } else {
+                //     return "";
+                // }
+                if (value == 'ru') {
+                        if (id==0) {
+                            return response.widgets[id].hint = 'Оставить отзыв «Быстро»';
+                        } else if (id==1) {
+                            return response.widgets[1].hint = 'Оставить отзыв «Выгодно»';
+                        } else {
+                            return "";
+                        }
+                } else if (value == 'kz') {
+                    if (id==0) {
+                        return response.widgets[id].hint = 'Қосымшасыз орнату';
+                    } else if (id==1) {
+                        return response.widgets[1].hint = 'Қосымша арқылы орнату';
+                    } else {
+                        return "";
+                    }
+                } else {
+                    if (id==0) {
+                        return response.widgets[id].hint = 'Leave a review "Quickly"';
+                    } else if (id==1) {
+                        return response.widgets[1].hint = 'Leave a review "Profitable"';
+                    } else {
+                        return "";
+                    }
+                }
             }
 
             return `
             <div class="card">
                 <h3>${value == 'ru' ? response.widgets[id].title : value == 'kz' ? response.widgets[id].title2 : response.widgets[id].title3}</h3>
                 <img src="${response.widgets[id].picture}" alt="" draggable="false">
-                <a href="${path()}">Выбрать</a>
+                <a href="${path()}">${value == 'ru' ? 'Выбрать' : value == 'kz' ? 'Таңдау' : 'Choose'}</a>
                 <p>${hint()}</p>
             </div>`;
         }
