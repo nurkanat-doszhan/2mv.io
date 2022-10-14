@@ -17,6 +17,7 @@ window.onload = function () {
     var url = document.location.href;
     var x = url.split('/');
     let sd = '';
+
     if (x.length <= 4) {
         sd = x[x.length - 1];
     }
@@ -43,17 +44,16 @@ window.onload = function () {
                 companyAvatar.classList.add("xdef");
             }
         }
-
         
-
         /*** Language ***/
-
+        /** localeDefault */
         let str = response.settings.localeData;
+        let localeDefault = response.settings.localeDefault;
         let words = str.split(';');
         let selectElem = `
             <label class="select" for="language">
                 <select id="language" required="required" style="text-transform: uppercase;">
-                    <option value="ru" selected="selected">RU</option>
+                    <option value=${localeDefault} selected="selected">${localeDefault}</option>
                     ${words.map((lang) => {
                         return (
                             `<option value="${lang}">${lang}</option>`
@@ -80,15 +80,21 @@ window.onload = function () {
         }
         
         let select = document.getElementById('language')
-        var currentLang = 'ru';
+        var currentLang = localeDefault;
 
-        lod('ru');
+        lod(localeDefault);
         function lod(value) {
             parent.innerHTML = '';
             for (var i = 0; i < response.widgets.length; i++) {
                 parent.innerHTML += widget(i,value);
             }
         }
+
+        companyName.innerHTML =
+            currentLang == 'ru' ? response.surveyName :
+            currentLang == 'kz' ? response.surveyName2 :
+            response.surveyName3;
+
         select.onchange = function () {
             select.options[select.selectedIndex].value == 'ru' ? companyName.innerHTML = response.surveyName : 
             select.options[select.selectedIndex].value == 'kz' ? companyName.innerHTML = response.surveyName2 :
