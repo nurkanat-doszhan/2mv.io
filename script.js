@@ -168,9 +168,9 @@ window.onload = function () {
                 // }
                 if (value == 'ru') {
                         if (id==0) {
-                            return response.widgets[id].hint = 'Оставить отзыв «Быстро»';
+                            return response.widgets[id].hint = 'Без установки приложения';
                         } else if (id==1) {
-                            return response.widgets[1].hint = 'Оставить отзыв «Выгодно»';
+                            return response.widgets[1].hint = 'C установкой приложения';
                         } else {
                             return "";
                         }
@@ -184,9 +184,9 @@ window.onload = function () {
                     }
                 } else {
                     if (id==0) {
-                        return response.widgets[id].hint = 'Leave a review "Quickly"';
+                        return response.widgets[id].hint = 'Without installing the application';
                     } else if (id==1) {
-                        return response.widgets[1].hint = 'Leave a review "Profitable"';
+                        return response.widgets[1].hint = 'Installing the application';
                     } else {
                         return "";
                     }
