@@ -48,7 +48,8 @@ window.onload = function () {
         /*** Language ***/
         /** localeDefault */
         let str = response.settings.localeData;
-        let localeDefault = response.settings.localeDefault;
+//         let localeDefault = response.settings.localeDefault;
+        let localeDefault = 'ru';
         let words = str.split(';');
         let selectElem = `
             <label class="select" for="language">
