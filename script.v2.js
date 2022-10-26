@@ -54,11 +54,18 @@ window.onload = function () {
         let selectElem = `
             <label class="select" for="language">
                 <select id="language" required="required" style="text-transform: uppercase;">
-                    <option value=${localeDefault} selected="selected">${localeDefault}</option>
+                    <option value="ru">RU</option>
                     ${words.map((lang) => {
-                        return (
-                            `<option value="${lang}">${lang}</option>`
-                        )
+                        if(lang === localeDefault) {
+                            return (
+                                `<option value="${lang}" selected>${lang}</option>`
+                            )
+                        }
+                        else {
+                            return (
+                                `<option value="${lang}">${lang}</option>`
+                            )
+                        }
                     })}
                 </select>
                 <svg>
@@ -156,17 +163,6 @@ window.onload = function () {
             }
 
             function hint() {
-                // if (response.widgets[id].hint) {
-                //     if (value == 'ru') {
-                //         return response.widgets[id].hint;
-                //     } else if (value == 'kz') {
-                //         return 'kz_hint'
-                //     } else {
-                //         return 'en_hint'
-                //     }
-                // } else {
-                //     return "";
-                // }
                 if (value == 'ru') {
                         if (id==0) {
                             return response.widgets[id].hint = 'Без установки приложения';
