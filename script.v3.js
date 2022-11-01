@@ -110,38 +110,38 @@ window.onload = function () {
 
       if (response.settings.locale && str) {
         lang2.innerHTML = selectElem2(localeDefault);
+        var btn = document.querySelector(".popover-button");
+        btn.onclick = function () {
+            list.classList.toggle("show-menu");
+            for (let i = 0; i < item.length; i++) {
+            item[i].onclick = function () {
+                lod(this.innerText);
+                if (this.innerText == "RU") {
+                flag.removeAttribute("class");
+                flag.classList.add("flag", "ru");
+                companyName.innerHTML = response.surveyName;
+                } else if (this.innerText == "KZ") {
+                flag.removeAttribute("class");
+                flag.classList.add("flag", "kz");
+                companyName.innerHTML = response.surveyName2;
+                } else if (this.innerText == "EN") {
+                flag.removeAttribute("class");
+                flag.classList.add("flag", "us");
+                companyName.innerHTML = response.surveyName3;
+                }
+                currentLang = this.innerText;
+                list.classList.toggle("show-menu");
+            };
+            }
+        };
       } else {
       }
 
       /*** New Lang Elems ***/
-      var btn = document.querySelector(".popover-button");
       var list = document.querySelector(".popover-content");
       var item = document.querySelectorAll(".track");
       var flag = document.querySelector(".flag");
       var currentLang = localeDefault;
-      btn.onclick = function () {
-        list.classList.toggle("show-menu");
-        for (let i = 0; i < item.length; i++) {
-          item[i].onclick = function () {
-            lod(this.innerText);
-            if (this.innerText == "RU") {
-              flag.removeAttribute("class");
-              flag.classList.add("flag", "ru");
-              companyName.innerHTML = response.surveyName;
-            } else if (this.innerText == "KZ") {
-              flag.removeAttribute("class");
-              flag.classList.add("flag", "kz");
-              companyName.innerHTML = response.surveyName2;
-            } else if (this.innerText == "EN") {
-              flag.removeAttribute("class");
-              flag.classList.add("flag", "us");
-              companyName.innerHTML = response.surveyName3;
-            }
-            currentLang = this.innerText;
-            list.classList.toggle("show-menu");
-          };
-        }
-      };
 
       lod(localeDefault);
       function lod(value) {
