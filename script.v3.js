@@ -62,7 +62,7 @@ window.onload = function () {
         if (lang === localeDefault) {
           el += `
             <li data-lang="${lang}" class="track">
-              <a href="#">
+              <a>
                 <span>${lang}</span>
               </a>
             </li>
@@ -70,7 +70,7 @@ window.onload = function () {
         } else {
           el += `
             <li data-lang="${lang}" class="track">
-              <a href="#">
+              <a>
                 <span>${lang}</span>
               </a>
             </li>
@@ -89,7 +89,7 @@ window.onload = function () {
             </button>
             <ul class="popover-content" style="text-transform: uppercase;">
               <li data-lang="ru" class="track">
-                <a href="#">
+                <a>
                   <span>RU</span>
                 </a>
               </li>
