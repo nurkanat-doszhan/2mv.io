@@ -31,7 +31,7 @@ window.onload = function () {
   const instance = instance1.create({
 //   const instance = axios.create({
     method: "get",
-    baseURL: `https://2mv.io/load-widgets?id=${sd}`
+    baseURL: `https://2mv.io/load-widgets?id=${sd}` /* ${sd} */
   });
   instance().then(
     function (response) {
@@ -112,27 +112,27 @@ window.onload = function () {
         lang2.innerHTML = selectElem2(localeDefault);
         var btn = document.querySelector(".popover-button");
         btn.onclick = function () {
-            list.classList.toggle("show-menu");
-            for (let i = 0; i < item.length; i++) {
+          list.classList.toggle("show-menu");
+          for (let i = 0; i < item.length; i++) {
             item[i].onclick = function () {
-                lod(this.innerText);
-                if (this.innerText == "RU") {
+              lod(this.innerText);
+              if (this.innerText == "RU") {
                 flag.removeAttribute("class");
                 flag.classList.add("flag", "ru");
                 companyName.innerHTML = response.surveyName;
-                } else if (this.innerText == "KZ") {
+              } else if (this.innerText == "KZ") {
                 flag.removeAttribute("class");
                 flag.classList.add("flag", "kz");
                 companyName.innerHTML = response.surveyName2;
-                } else if (this.innerText == "EN") {
+              } else if (this.innerText == "EN") {
                 flag.removeAttribute("class");
                 flag.classList.add("flag", "us");
                 companyName.innerHTML = response.surveyName3;
-                }
-                currentLang = this.innerText;
-                list.classList.toggle("show-menu");
+              }
+              currentLang = this.innerText;
+              list.classList.toggle("show-menu");
             };
-            }
+          }
         };
       } else {
       }
@@ -187,7 +187,7 @@ window.onload = function () {
 
           if (response.widgets[id].type == "one") {
             return (
-              "https://mvoter.com/interview/" + id2 + `?locale=${currentLang}`
+              "https://mvoter.com/interview/" + id2 + `?locale=${currentLang.toLowerCase()}`
             );
           } else if (response.widgets[id].type == "two") {
             return id1 + `/${currentLang}`;
