@@ -31,7 +31,7 @@ window.onload = function () {
   const instance = instance1.create({
 //   const instance = axios.create({
     method: "get",
-    baseURL: `https://2mv.io/load-widgets?id=${sd}` /* ${sd} */
+    baseURL: `https://2mv.io/load-widgets?id=${sd}`
   });
   instance().then(
     function (response) {
@@ -184,13 +184,12 @@ window.onload = function () {
             link = "";
             getHttp = "";
           }
-
           if (response.widgets[id].type == "one") {
             return (
-              "https://mvoter.com/interview/" + id2 + `?locale=${currentLang.toLowerCase()}`
+              "https://mvoter.com/interview/" + id2 + `?locale=${value.toLowerCase()}`
             );
           } else if (response.widgets[id].type == "two") {
-            return id1 + `/${currentLang}`;
+            return id1 + `/${value.toLowerCase()}`;
           } else {
             let getNum = link
               .split("//")
