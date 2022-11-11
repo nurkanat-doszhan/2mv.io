@@ -31,7 +31,7 @@ window.onload = function () {
   const instance = instance1.create({
 //   const instance = axios.create({
     method: "get",
-    baseURL: `https://2mv.io/load-widgets?id=${sd}` /* ${sd} b35ae4a0 */
+    baseURL: `https://2mv.io/load-widgets?id=${sd}` /* ${sd} e757ee4c */
   });
   instance().then(
     function (response) {
@@ -301,7 +301,7 @@ window.onload = function () {
           <h3 class="small">${subTitle()}</h3>
           <img src="${response.widgets[id].picture}" alt="" draggable="false">
           <a href="${path()}">${value == "RU" ? "Выбрать" : value == "KZ" ? "Таңдау" : "Choose"}</a>
-          ${hint()}
+          ${ response.widgets[id].type == "one" ? hint() : ""}
           ${salePic()}
         </div>`;
       }
