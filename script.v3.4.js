@@ -31,7 +31,7 @@ window.onload = function () {
   const instance = instance1.create({
 //   const instance = axios.create({
     method: "get",
-    baseURL: `https://2mv.io/load-widgets?id=${sd}` /* ${sd} e757ee4c */
+    baseURL: `https://2mv.io/load-widgets?id=b35ae4a0` /* ${sd} e757ee4c */
   });
   instance().then(
     function (response) {
@@ -288,9 +288,9 @@ window.onload = function () {
           return (
             response.widgets[id].type == "one" && value == "RU"
             || response.widgets[id].type == "one" && value == "KZ"
-            ? `<img src="./images/sale1.png" style="width: 85px; height: 52px;" class="sale" />`
+            ? `<img src="https://2mv.io/images/sale1.png" style="width: 85px; height: 52px;" class="sale" />`
             : response.widgets[id].type == "one" && value == "EN"
-            ? `<img src="./images/sale2.png" style="width: 105px; height: 52px; right: 10px;" class="sale" />`
+            ? `<img src="https://2mv.io/images/sale2.png" style="width: 105px; height: 52px; right: 10px;" class="sale" />`
             : ''
           )
         }
