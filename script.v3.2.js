@@ -31,7 +31,7 @@ window.onload = function () {
   const instance = instance1.create({
 //   const instance = axios.create({
     method: "get",
-    baseURL: `https://2mv.io/load-widgets?id=${sd}`
+    baseURL: `https://2mv.io/load-widgets?id=${sd}` /* ${sd} b35ae4a0 */
   });
   instance().then(
     function (response) {
@@ -155,6 +155,11 @@ window.onload = function () {
       /*** Widgets ***/
 
       function widget(id, value) {
+
+        if (response.widgets[id].type == "one") {
+          response.widgets[id].picture = "../images/giftbox.svg"
+        }
+
         /*** Скрыть второй блок */
         if (response.widgets[id].type == "two") {
           return '';
@@ -184,6 +189,7 @@ window.onload = function () {
             link = "";
             getHttp = "";
           }
+
           if (response.widgets[id].type == "one") {
             return (
               "https://mvoter.com/interview/" + id2 + `?locale=${value.toLowerCase()}`
@@ -211,54 +217,92 @@ window.onload = function () {
           }
         }
 
+        function title() {
+          return (
+            // value == "RU" ? response.widgets[id].title
+            // : value == "KZ"
+            // ? response.widgets[id].title2
+            // : response.widgets[id].title3
+
+            response.widgets[id].type == "one" && value == "RU"
+              ? "Оставь короткий отзыв"
+              : response.widgets[id].type == "one" && value == "KZ"
+              ? "Қысқа пікір қалдырыңыз"
+              : response.widgets[id].type == "one" && value == "EN"
+              ? "Leave a short review":
+              value == "RU"
+                ? response.widgets[id].title
+                : value == "KZ"
+                ? response.widgets[id].title2
+                : response.widgets[id].title3
+          )
+        }
+
+        function subTitle() {
+          return (
+            response.widgets[id].type == "one" && value == "RU"
+              ? "и участвуй в розыгрыше призов"
+              : response.widgets[id].type == "one" && value == "KZ"
+              ? "және жүлделер ұтысына қатысыңыз"
+              : response.widgets[id].type == "one" && value == "EN"
+              ? "and participate in the prize lottery":
+              ''
+          )
+        }
+
         function hint() {
           if (value == "RU") {
             if (id == 0) {
               let h = `
-                <p>Без установки приложения</p>
+                <p>не более 1 минуты на ответ</p>
                 `
                 /*<p>или с установкой
                   <a class="a-text" href="${id1 + `/${currentLang}`}">приложения</a>
                 </p>*/
               return (response.widgets[id].hint = h);
             } else if (id == 1) {
-              return (response.widgets[1].hint = "<p>C установкой приложения</p>");
+              return (response.widgets[1].hint = "<p>не более 1 минуты на ответ</p>");
             } else {
               return "";
             }
           } else if (value == "KZ") {
             if (id == 0) {
-              return (response.widgets[id].hint = "<p>Қосымшасыз орнату</p>");
+              return (response.widgets[id].hint = "<p>жауап беру 1 минуттан аспайды</p>");
             } else if (id == 1) {
-              return (response.widgets[1].hint = "<p>Қосымша арқылы орнату</p>");
+              return (response.widgets[1].hint = "<p>жауап беру 1 минуттан аспайды</p>");
             } else {
               return "";
             }
           } else {
             if (id == 0) {
-              return (response.widgets[id].hint ="<p>Without installing the application</p>");
+              return (response.widgets[id].hint ="<p>no more than 1 minute to respond</p>");
             } else if (id == 1) {
-              return (response.widgets[1].hint = "<p>Installing the application</p>");
+              return (response.widgets[1].hint = "<p>no more than 1 minute to respond</p>");
             } else {
               return "";
             }
           }
         }
 
+        function salePic() {
+          return (
+            response.widgets[id].type == "one" && value == "RU"
+            || response.widgets[id].type == "one" && value == "KZ"
+            ? `<img src="./images/sale1.png" style="width: 85px; height: 52px;" class="sale" />`
+            : response.widgets[id].type == "one" && value == "EN"
+            ? `<img src="./images/sale2.png" style="width: 105px; height: 52px; right: 10px;" class="sale" />`
+            : ''
+          )
+        }
+
         return `
-        <div class="card">
-          <h3>${
-            value == "RU"
-              ? response.widgets[id].title
-              : value == "KZ"
-              ? response.widgets[id].title2
-              : response.widgets[id].title3
-          }</h3>
+        <div class="card ${response.widgets[id].type == "one" ? 'one' : ''}">
+          <h3>${title()}</h3>
+          <h3 class="small">${subTitle()}</h3>
           <img src="${response.widgets[id].picture}" alt="" draggable="false">
-          <a href="${path()}">${
-          value == "RU" ? "Выбрать" : value == "KZ" ? "Таңдау" : "Choose"
-        }</a>
+          <a href="${path()}">${value == "RU" ? "Выбрать" : value == "KZ" ? "Таңдау" : "Choose"}</a>
           ${hint()}
+          ${salePic()}
         </div>`;
       }
     },
