@@ -241,10 +241,12 @@ body {
       position: relative;
       .sale {
         position: absolute;
-        top: -9px;
-        right: 22px;
-        width: 85px;
-        height: 52px;
+        top: -14px;
+        right: 15px;
+        // width: 85px;
+        // height: 52px;
+        background: none;
+        padding: 0;
       }
       &::before {
         content: "";
