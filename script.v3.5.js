@@ -287,10 +287,20 @@ window.onload = function () {
         function salePic() {
           return (
             response.widgets[id].type == "one" && value == "RU"
-            || response.widgets[id].type == "one" && value == "KZ"
-            ? `<img src="https://2mv.io/images/sale1.png" style="width: 85px; height: 52px;" class="sale" />`
+            ? `
+              <a href="https://2mv.io/promotion-ru.html" class="sale">
+                <img src="https://2mv.io/images/sale1.png" style="width: 100px; height: 52px;" />
+              </a>` 
+            : response.widgets[id].type == "one" && value == "KZ"
+            ? `
+              <a href="https://2mv.io/promotion-kz.html" class="sale">
+                <img src="https://2mv.io/images/sale1.png" style="width: 100px; height: 52px;" />
+              </a>`
             : response.widgets[id].type == "one" && value == "EN"
-            ? `<img src="https://2mv.io/images/sale2.png" style="width: 105px; height: 52px; right: 10px;" class="sale" />`
+            ? `
+              <a href="javascript:void(0)" class="sale" style="right: 10px; top: -16px;">
+                <img src="https://2mv.io/images/sale2.png" style="width: 105px; height: 52px;" />
+              </a>`
             : ''
           )
         }
