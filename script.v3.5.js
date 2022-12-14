@@ -156,7 +156,7 @@ window.onload = function () {
 
       function widget(id, value) {
 
-        if (response.widgets[id].type == "one") {
+        if (response.widgets[id].type == "one" && sd != '227d56c5') {
           response.widgets[id].picture = "../images/giftbox.svg"
         }
 
@@ -305,6 +305,20 @@ window.onload = function () {
           )
         }
 
+        if(sd === "227d56c5") { // sd == 227d56c5
+          return (`
+            <div class="card">
+              <h3>${value == "RU"
+              ? response.widgets[id].title
+              : value == "KZ"
+              ? response.widgets[id].title2
+              : response.widgets[id].title3}</h3>
+              <img src="${response.widgets[id].picture}" alt="" draggable="false">
+              <a href="${path()}">${value == "RU" ? "Выбрать" : value == "KZ" ? "Таңдау" : "Choose"}</a>
+              ${ response.widgets[id].type == "one" ? hint() : ""}
+            </div>`
+          )
+        }
         return `
         <div class="card ${response.widgets[id].type == "one" ? 'one' : ''}">
           <h3>${title()}</h3>
