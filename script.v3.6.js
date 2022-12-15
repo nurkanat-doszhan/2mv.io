@@ -293,8 +293,8 @@ window.onload = function () {
               </a>` 
             : response.widgets[id].type == "one" && value == "KZ"
             ? `
-              <a href="https://2mv.io/promotion-kz.html" class="sale">
-                <img src="https://2mv.io/images/sale1.png" style="width: 100px; height: 52px;" />
+              <a href="https://2mv.io/promotion-kz.html" class="sale" style="top: -16px">
+                <img src="https://2mv.io/images/sale3.png" style="width: 111px; height: 62px;" />
               </a>`
             : response.widgets[id].type == "one" && value == "EN"
             ? `
