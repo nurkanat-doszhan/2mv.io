@@ -265,6 +265,9 @@ body {
         color: #fff;
         font-weight: 500;
         font-size: 15px;
+        &.big {
+          font-size: 24px !important;
+        }
         &.small {
           margin-top: 0;
           margin-bottom: 16px;

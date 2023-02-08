@@ -225,7 +225,7 @@ window.onload = function () {
             // : response.widgets[id].title3
 
             response.widgets[id].type == "one" && value == "RU"
-              ? "Оставь короткий отзыв"
+              ? "Оставьте отзыв"
               : response.widgets[id].type == "one" && value == "KZ"
               ? "Қысқа пікір қалдырыңыз"
               : response.widgets[id].type == "one" && value == "EN"
@@ -321,7 +321,7 @@ window.onload = function () {
         }
         return `
         <div class="card ${response.widgets[id].type == "one" ? 'one' : ''}">
-          <h3>${title()}</h3>
+          <h3 class="${response.widgets[id].type == "one" && value == "RU" ? 'big' : ''}">${title()}</h3>
           <h3 class="small">${subTitle()}</h3>
           <img src="${response.widgets[id].picture}" alt="" draggable="false">
           <a href="${path()}">${value == "RU" ? "Выбрать" : value == "KZ" ? "Таңдау" : "Choose"}</a>
