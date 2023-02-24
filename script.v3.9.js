@@ -29,9 +29,9 @@ window.onload = function () {
   }
   const instance1 = axios.default;
   const instance = instance1.create({
-//   const instance = axios.create({
+    //   const instance = axios.create({
     method: "get",
-    baseURL: `https://2mv.io/load-widgets?id=${sd}` /* ${sd} e757ee4c */
+    baseURL: `https://2mv.io/load-widgets?id=${sd}` /* ${sd} 8d880a4b 8cef47f2 */
   });
   instance().then(
     function (response) {
@@ -196,6 +196,12 @@ window.onload = function () {
             );
           } else if (response.widgets[id].type == "two") {
             return id1 + `/${value.toLowerCase()}`;
+          } else if (response.widgets[id].type == "eight") {
+            let lin = response.widgets[id].link.split('/');
+            if (lin.includes('my.dzmenu.com'))
+              return response.widgets[id].link + '/0001'
+            else
+              return response.widgets[id].link
           } else {
             let getNum = link
               .split("//")
@@ -290,7 +296,7 @@ window.onload = function () {
             ? `
               <a href="https://2mv.io/promotion-ru.html" class="sale">
                 <img src="https://2mv.io/images/sale1.png" style="width: 100px; height: 52px;" />
-              </a>` 
+              </a>`
             : response.widgets[id].type == "one" && value == "KZ"
             ? `
               <a href="https://2mv.io/promotion-kz.html" class="sale" style="top: -16px">
