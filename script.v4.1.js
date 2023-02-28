@@ -247,7 +247,7 @@ window.onload = function () {
         function subTitle() {
           return (
             response.widgets[id].type == "one" && value == "RU"
-              ? "и участвуй в розыгрыше призов"
+              ? "и участвуйте в розыгрыше призов"
               : response.widgets[id].type == "one" && value == "KZ"
               ? "және жүлделер ұтысына қатысыңыз"
               : response.widgets[id].type == "one" && value == "EN"
