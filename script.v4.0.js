@@ -199,7 +199,7 @@ window.onload = function () {
           } else if (response.widgets[id].type == "eight") {
             let lin = response.widgets[id].link.split('/');
             if (lin.includes('my.dzmenu.com'))
-              return response.widgets[id].link + '/0001'
+              return response.widgets[id].link + '/' + x[x.length - 1]
             else
               return response.widgets[id].link
           } else {
