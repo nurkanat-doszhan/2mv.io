@@ -156,7 +156,9 @@ window.onload = function () {
 
       function widget(id, value) {
 
-        if (response.widgets[id].type == "one" && sd != '227d56c5' || response.widgets[id].type == "one" && sd != '22ddd1a6') {
+        if (response.widgets[id].type == "one" && sd != '227d56c5'
+            || response.widgets[id].type == "one" && sd != '22ddd1a6'
+            || response.widgets[id].type == "one" && sd != 'be7815f6') {
           response.widgets[id].picture = "../images/giftbox.svg"
         }
 
@@ -311,7 +313,9 @@ window.onload = function () {
           )
         }
 
-        if(sd === "227d56c5" || sd === "22ddd1a6") { // omarket id
+        if(sd === "227d56c5"
+           || sd === "22ddd1a6"
+          || sd === "be7815f6") { // Исключение
           return (`
             <div class="card">
               <h3>${value == "RU"
