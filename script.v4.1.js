@@ -325,18 +325,18 @@ window.onload = function () {
               : response.widgets[id].title3}</h3>
               <img src="${response.widgets[id].picture}" alt="" draggable="false">
               <a href="${path()}">${value == "RU" ? "Выбрать" : value == "KZ" ? "Таңдау" : "Choose"}</a>
-              ${ response.widgets[id].type == "one" ? hint() : ""}
+              <!-- ${ response.widgets[id].type == "one" ? hint() : ""}-->
             </div>`
           )
         }
         return `
-        <div class="card ${response.widgets[id].type == "one" ? 'one' : ''}">
+        <div class="card">
           <h3 class="${response.widgets[id].type == "one" && value == "RU" ? 'big' : ''}">${title()}</h3>
-          <h3 class="small">${subTitle()}</h3>
+          <!--<h3 class="small" style="display: none">${subTitle()}</h3>-->
           <img src="${response.widgets[id].picture}" alt="" draggable="false">
           <a href="${path()}">${value == "RU" ? "Выбрать" : value == "KZ" ? "Таңдау" : "Choose"}</a>
-          ${ response.widgets[id].type == "one" ? hint() : ""}
-          ${salePic()}
+          <!-- ${ response.widgets[id].type == "one" ? hint() : ""}
+          ${salePic()} -->
         </div>`;
       }
     },
